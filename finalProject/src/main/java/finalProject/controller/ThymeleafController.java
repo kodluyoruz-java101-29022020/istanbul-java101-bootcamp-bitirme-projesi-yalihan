@@ -46,11 +46,11 @@ public class ThymeleafController {
 
 	
 	@RequestMapping(value="/book/add",method=RequestMethod.GET)
-    public String getAddPage(Book book) {
+	public String getAddPage(Book book) {
     	return "pages/thyme_book_add";
     }
 	@RequestMapping(value="/book/add",method=RequestMethod.POST)
-    public String add(Book bookContext, BindingResult result, Model model) {
+	public String add(Book bookContext, BindingResult result, Model model) {
 		iBookService.add(bookContext);
         model.addAttribute("books",iBookService.getAllBooks());
         return "pages/thyme_book_list";
