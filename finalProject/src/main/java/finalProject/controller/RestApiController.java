@@ -28,9 +28,6 @@ public class RestApiController {
 	public void update(Book book) {
 		this.iBookService.update(book);
 	}
-	public void delete(Book book) {
-		this.iBookService.delete(book);
-	}
 	@GetMapping("/books/{id}")
 	public Book getById(@PathVariable int id) {
 		return this.iBookService.getById(id);

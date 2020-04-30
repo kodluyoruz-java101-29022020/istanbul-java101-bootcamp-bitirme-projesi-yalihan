@@ -42,13 +42,6 @@ public class HibernateBookDAO implements IBookDAO{
 	}
 	@Override
 	@Transactional
-	public void delete(Book book) {
-		Session session = entityManager.unwrap(Session.class);
-		Book bookToDelete = session.get(Book.class,book.getId());
-		session.delete(bookToDelete);
-	}
-	@Override
-	@Transactional
 	public Book getById(int id) {
 		Session session = entityManager.unwrap(Session.class);
 		return session.get(Book.class, id);

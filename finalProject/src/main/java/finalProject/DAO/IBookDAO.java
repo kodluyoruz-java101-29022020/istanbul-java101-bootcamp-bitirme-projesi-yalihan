@@ -8,7 +8,6 @@ public interface IBookDAO {
 	List<Book> getAllBooks();
 	void add(Book book);
 	void update(Book book);
-	void delete(Book book);
 	Book getById(int id);
 	int findMaxId();
 }

@@ -1,13 +1,9 @@
 package finalProject.entities;
 
-import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.Date;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name="books")
@@ -15,12 +11,12 @@ public class Book {
 	
 	@Id
 	@Column(name="id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column(name="title")
 	private String title;
-	@Column(name="pub_year")
-	private LocalDate pubYear;
+	@Column(name="pubyear")
+	private Date pubyear;
 	@Column(name="description")
 	private String description;
 	
@@ -28,10 +24,10 @@ public class Book {
 		
 	}
 
-	public Book(int id, String title, LocalDate pubYear, String description) {
+	public Book(int id, String title, Date pubyear, String description) {
 		this.id = id;
 		this.title = title;
-		this.pubYear = pubYear;
+		this.pubyear = pubyear;
 		this.description = description;
 	}
 
@@ -42,8 +38,8 @@ public class Book {
 		return title;
 	}
 
-	public LocalDate getPubYear() {
-		return pubYear;
+	public Date getPubyear() {
+		return pubyear;
 	}
 	public String getDescription() {
 		return description;
@@ -55,8 +51,8 @@ public class Book {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public void setPubYear(LocalDate pubYear) {
-		this.pubYear = pubYear;
+	public void setPubyear(Date pubyear) {
+		this.pubyear = pubyear;
 	}
 	public void setDescription(String description) {
 		this.description = description;

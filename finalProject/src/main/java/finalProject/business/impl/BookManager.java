@@ -37,11 +37,6 @@ public class BookManager implements IBookService {
 	}
 	@Override
 	@Transactional
-	public void delete(Book book) {
-		this.iBookDAO.delete(book);
-	}
-	@Override
-	@Transactional
 	public Book getById(int id) {
 		return this.iBookDAO.getById(id);
 	}
