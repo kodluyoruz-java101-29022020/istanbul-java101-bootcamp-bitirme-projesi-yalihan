@@ -6,28 +6,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import finalProject.business.IBookService;
 import finalProject.entities.Book;
 
 @Controller
 @RequestMapping("/thyme")
-public class ThymeleafController {
+public class PageController {
+	
 	private IBookService iBookService;
 	
 	@Autowired
-	public ThymeleafController(IBookService iBookService) {
+	public PageController(IBookService iBookService) {
 		this.iBookService = iBookService;
 	}
-	
+
 	@RequestMapping(value="/book/list",method=RequestMethod.GET)
-	public String getAllBooks(Model model , @RequestParam(defaultValue="") String title) {
-		model.addAttribute("books", iBookService.getByTitle(title));
+	public String getAllBooks(Model model) {
+		model.addAttribute("books", iBookService.getAllBooks());
 		return "pages/thyme_book_list";
+	}
+	@RequestMapping(value="/book/list",method=RequestMethod.POST)
+	public String getSearchBook(Model model , @RequestParam(defaultValue="") String title) {
+		model.addAttribute("books", iBookService.getByTitle(title));
+		return "pages/thyme_book_search";
 	}
 	
 	
@@ -47,13 +50,14 @@ public class ThymeleafController {
 	
 	
 	@RequestMapping(value="/book/add",method=RequestMethod.GET)
-	public String getAddPage(Book book) {
+    public String getAddPage(Book book) {
     	return "pages/thyme_book_add";
-	}
+    }
 	@RequestMapping(value="/book/add",method=RequestMethod.POST)
-	public String add(Book bookContext, BindingResult result, Model model) {
-		iBookService.add(bookContext);
+    public String add(Book book, BindingResult result, Model model) {
+		iBookService.add(book);
         model.addAttribute("books",iBookService.getAllBooks());
         return "pages/thyme_book_list";
-	}
+    }
 }
+//

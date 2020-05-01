@@ -12,7 +12,7 @@
 		<h2 th:case=null class="container my-5">Arşivde Kitap Yok</h2>
 		<div th:case=*>
 			<h1>Kitap Listem</h1>
-			<form action="/thyme/book/list" class="from-inline">
+			<form action="/thyme/book/list" class="from-inline" method="POST">
 				<div class="form-group mb-2">
 					<input type="text" class="form-control" name="title" placeholder="Kitap Ara" />
 					<input type="submit" value="Search" class="btn btn-primary"/>
