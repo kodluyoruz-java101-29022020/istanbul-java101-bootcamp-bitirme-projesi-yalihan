@@ -42,6 +42,13 @@ public class HibernateBookDAO implements IBookDAO{
 	}
 	@Override
 	@Transactional
+	public List<Book> getByTitle(String title) {
+		Session session = entityManager.unwrap(Session.class);
+		String query = "from Book where title like '%"+title+"%'";
+		return session.createQuery(query,Book.class).getResultList();
+	}
+	@Override
+	@Transactional
 	public Book getById(int id) {
 		Session session = entityManager.unwrap(Session.class);
 		return session.get(Book.class, id);
