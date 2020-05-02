@@ -16,15 +16,15 @@
         <div class="card">
             <div class="card-body">
                 <div class="col-md-8">
-                    <form action="#" th:action="@{/thyme/update/{id}(id=${book.id})}" th:object="${book}" method="POST">
+                    <form action="#" th:action="@{/thyme/update/{bookNo}(bookNo=${book.bookNo})}" th:object="${book}" method="POST">
                         <div class="row">
                             <div class="form-group col-md-6">
                                 <label for="title" class="col-form-label">Kitap İsmi</label>
                                 <input type="text" th:field="*{title}" class="form-control" id="title" placeholder="İsim">
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="pubyear" class="col-form-label">Basım Yılı</label>
-								<input type="date" th:value="*{pubyear}" id="pubyear" />
+                                <label for="pubYear" class="col-form-label">Basım Yılı</label>
+								<input type="date" th:value="*{pubYear}" id="pubYear" />
                             </div>
                             <div class="form-group col-md-8">
                                 <label for="description" class="col-form-label">Açıklama</label>

@@ -24,7 +24,7 @@
 						<tr th:each="book : ${books}">
 							<td th:text="${book.title}"></td>
 	<!-- 						<td th:text="${book.author}"></td> -->
-							<td><a th:href="@{/thyme/edit/{id}(id=${book.id})}" class="btn btn-primary">Düzenle</a></td>
+							<td><a th:href="@{/thyme/edit/{bookNo}(bookNo=${book.bookNo})}" class="btn btn-primary">Düzenle</a></td>
 						</tr>
 					</tbody>
 				</table>

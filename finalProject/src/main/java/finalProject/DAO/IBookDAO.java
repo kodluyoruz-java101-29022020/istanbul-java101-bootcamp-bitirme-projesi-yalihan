@@ -9,6 +9,6 @@ public interface IBookDAO {
 	void add(Book book);
 	void update(Book book);
 	List<Book> getByTitle(String title);
-	Book getById(int id);
+	Book getById(int bookNo);
 	int findMaxId();
 }

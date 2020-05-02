@@ -42,8 +42,8 @@ public class BookManager implements IBookService {
 	}
 	@Override
 	@Transactional
-	public Book getById(int id) {
-		return this.iBookDAO.getById(id);
+	public Book getById(int bookNo) {
+		return this.iBookDAO.getById(bookNo);
 	}
 	@Override
 	@Transactional

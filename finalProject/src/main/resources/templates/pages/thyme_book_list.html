@@ -31,12 +31,12 @@
 				</thead>
 				<tbody>
 					<tr th:each="book : ${books}">
-						<td th:text="${book.id}"></td>
+						<td th:text="${book.bookNo}"></td>
 						<td th:text="${book.title}"></td>
 						<td th:text="${book.description}"></td>
 <!-- 						<td th:text="${book.author}"></td> -->
-						<td th:text="${book.pubyear}"></td>
-						<td><a th:href="@{/thyme/edit/{id}(id=${book.id})}" class="btn btn-primary">Düzenle</a></td>
+						<td th:text="${book.pubYear}"></td>
+						<td><a th:href="@{/thyme/edit/{bookNo}(bookNo=${book.bookNo})}" class="btn btn-primary">Düzenle</a></td>
 					</tr>
 				</tbody>
 			</table>

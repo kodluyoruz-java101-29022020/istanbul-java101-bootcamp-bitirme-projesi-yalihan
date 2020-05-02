@@ -17,16 +17,16 @@
                     <form action="#" th:action="@{/thyme/book/add}" th:object="${book}" method="POST">
                         <div class="row">
                         	<div class="form-group col-md-6">
-                                <label for="id" class="col-form-label">ID</label>
-                                <input type="number" th:field="*{id}" class="form-control" id="id" placeholder="ID">
+                                <label for="bookNo" class="col-form-label">NO</label>
+                                <input type="number" th:field="*{bookNo}" class="form-control" id="bookNo" placeholder="No">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="title" class="col-form-label">Kitap İsmi</label>
                                 <input type="text" th:field="*{title}" class="form-control" id="title" placeholder="İsim">
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="pubyear" class="col-form-label">Basım Yılı</label>
-								<input type="date" th:value="*{pubyear}" id="pubyear" />
+                                <label for="pubYear" class="col-form-label">Basım Yılı</label>
+								<input type="date" th:value="*{pubYear}" id="pubYear" />
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="description" class="col-form-label">Açıklama</label>

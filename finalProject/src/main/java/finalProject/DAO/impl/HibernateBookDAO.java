@@ -49,15 +49,15 @@ public class HibernateBookDAO implements IBookDAO{
 	}
 	@Override
 	@Transactional
-	public Book getById(int id) {
+	public Book getById(int bookNo) {
 		Session session = entityManager.unwrap(Session.class);
-		return session.get(Book.class, id);
+		return session.get(Book.class, bookNo);
 	}
 	@Override
 	@Transactional
 	public int findMaxId() {
 		Session session = entityManager.unwrap(Session.class);
 		Book book = session.createQuery("select max(b.id) from Book b",Book.class).getSingleResult();
-		return book.getId();
+		return book.getBookNo();
 	}
 }

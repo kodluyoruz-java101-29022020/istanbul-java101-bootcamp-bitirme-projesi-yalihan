@@ -35,13 +35,13 @@ public class PageController {
 	
 	
 	
-	@RequestMapping(value="/edit/{id}",method=RequestMethod.GET)
-	public String getUpdatePage(@PathVariable(value="id") int id, Model model) {
-		model.addAttribute("book", iBookService.getById(id));
+	@RequestMapping(value="/edit/{bookNo}",method=RequestMethod.GET)
+	public String getUpdatePage(@PathVariable(value="bookNo") int bookNo, Model model) {
+		model.addAttribute("book", iBookService.getById(bookNo));
 		return "pages/thyme_book_update";
 	}
-	@RequestMapping(value="/update/{id}",method=RequestMethod.POST)
-	public String update(@PathVariable(value="id") int id ,@Valid Book book, BindingResult result,Model model) {
+	@RequestMapping(value="/update/{bookNo}",method=RequestMethod.POST)
+	public String update(@PathVariable(value="bookNo") int bookNo,@Valid Book book, BindingResult result,Model model) {
 		iBookService.update(book);
 		model.addAttribute("books", iBookService.getAllBooks());
 		return "pages/thyme_book_list";
