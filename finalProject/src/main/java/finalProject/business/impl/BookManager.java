@@ -8,7 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import finalProject.DAO.IBookDAO;
 import finalProject.business.IBookService;
-import finalProject.entities.Book;
+import finalProject.business.model.Kitap;
+import finalProject.entities.Author;
 
 @Service
 public class BookManager implements IBookService {
@@ -19,34 +20,44 @@ public class BookManager implements IBookService {
 	public BookManager(IBookDAO iBookDAO) {
 		this.iBookDAO = iBookDAO;
 	}
-	
 	@Override
 	@Transactional
-	public List<Book> getAllBooks() {
-		return this.iBookDAO.getAllBooks();
+	//@MethodRunningTime(active = true)
+	public List<Kitap> getKitaplar() {
+		return this.iBookDAO.getKitaplar();
 	}
 	@Override
 	@Transactional
-	public void add(Book book) {
-		this.iBookDAO.add(book);
+	//@MethodRunningTime(active = true)
+	public void add(Kitap kitap) {
+		this.iBookDAO.add(kitap);
 	}
 	@Override
 	@Transactional
-	public void update(Book book) {
-		this.iBookDAO.update(book);
+	//@MethodRunningTime(active = true)
+	public void update(Kitap kitap) {
+		this.iBookDAO.update(kitap);
 	}
 	@Override
 	@Transactional
-	public List<Book> getByTitle(String title) {
+	//@MethodRunningTime(active = true)
+	public Kitap getById(int id) {
+		return this.iBookDAO.getById(id);
+	}
+	@Override
+	@Transactional
+	//@MethodRunningTime(active = true)
+	public List<Kitap> getByTitle(String title) {
 		return this.iBookDAO.getByTitle(title);
 	}
 	@Override
 	@Transactional
-	public Book getById(int bookNo) {
-		return this.iBookDAO.getById(bookNo);
+	public List<Author> getAuthors() {
+		return this.iBookDAO.getAuthors();
 	}
 	@Override
 	@Transactional
+	//@MethodRunningTime(active = true)
 	public int findMaxId() {
 		return this.iBookDAO.findMaxId();
 	}

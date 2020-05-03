@@ -8,35 +8,35 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
-	<div th:switch="${books}" class="container my-2">
+	<div th:switch="${kitaplar}" class="container my-2">
 		<h2 th:case=null class="container my-5">Arşivde Kitap Yok</h2>
 		<div th:case=*>
 			<h1>Kitap Listem</h1>
 			<form action="/thyme/book/list" class="from-inline" method="POST">
 				<div class="form-group mb-2">
-					<input type="text" class="form-control" name="title" placeholder="Kitap Ara" />
+					<input type="text" class="form-control" name="title" placeholder="Kitap Ara"/>
 					<input type="submit" value="Search" class="btn btn-primary"/>
 				</div>
 			</form>
 			<table class="table table-striped table-responsive-md">
 				<thead>
 					<tr>
-						<th>ID</th>
 						<th>Title</th>
+						<th>Authors</th>
 						<th>Description</th>
-<!-- 						<th>Authors</th> -->
 						<th>Publish Year</th>
 						<th>Düzenle</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="book : ${books}">
-						<td th:text="${book.bookNo}"></td>
-						<td th:text="${book.title}"></td>
-						<td th:text="${book.description}"></td>
-<!-- 						<td th:text="${book.author}"></td> -->
-						<td th:text="${book.pubYear}"></td>
-						<td><a th:href="@{/thyme/edit/{bookNo}(bookNo=${book.bookNo})}" class="btn btn-primary">Düzenle</a></td>
+					<tr th:each="kitap : ${kitaplar}">
+						<td th:text="${kitap.book.title}"></td>
+                        <td>
+							<option th:each="author : ${kitap.book.authors}" th:value="${author.authorName}" th:text="${author.authorName}">Yazarlar</option>
+						</td>
+						<td th:text="${kitap.book.description}"></td>
+						<td th:text="${kitap.book.pubYear}"></td>
+						<td><a th:href="@{/thyme/edit/{bookNo}(bookNo=${kitap.book.bookNo})}" class="btn btn-primary">Düzenle</a></td>
 					</tr>
 				</tbody>
 			</table>

@@ -10,54 +10,68 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import finalProject.DAO.IBookDAO;
+import finalProject.business.model.Kitap;
+import finalProject.entities.Author;
 import finalProject.entities.Book;
 
 @Repository
 public class HibernateBookDAO implements IBookDAO{
 	
 	private EntityManager entityManager;
-	
+
 	@Autowired
 	public HibernateBookDAO(EntityManager entityManager) {
 		this.entityManager = entityManager;
 	}
+	
 	@Override
 	@Transactional
-	public List<Book> getAllBooks() {
+	public List<Kitap> getKitaplar() {
 		Session session = entityManager.unwrap(Session.class);
-		List<Book> books = session.createQuery("from Book",Book.class).getResultList();
-		return books;
+		String query = "SELECT new finalProject.business.model.Kitap(b,baut.authorName) FROM Book b "
+				+ "LEFT OUTER JOIN b.authors baut group by b.title";
+		List<Kitap> kitaplar = session.createQuery(query,Kitap.class).getResultList();
+		return kitaplar;
 	}
 	@Override
 	@Transactional
-	public void add(Book book) {
+	public void add(Kitap kitap) {
 		Session session = entityManager.unwrap(Session.class);
-		session.save(book);
+		session.save(kitap);
 	}
 	@Override
 	@Transactional
-	public void update(Book book) {
+	public void update(Kitap kitap) {
 		Session session = entityManager.unwrap(Session.class);
-		session.update(book);
+		session.update(kitap.getBook());
 	}
 	@Override
 	@Transactional
-	public List<Book> getByTitle(String title) {
+	public Kitap getById(int id) {
+		Session session = entityManager.unwrap(Session.class);
+		String query = "SELECT new finalProject.business.model.Kitap(b,baut.authorName) FROM Book b "
+				+ "LEFT OUTER JOIN b.authors baut where b.bookNo="+id+"";
+		return session.createQuery(query,Kitap.class).getSingleResult();
+		
+	}
+	@Override
+	@Transactional
+	public List<Kitap> getByTitle(String title) {
 		Session session = entityManager.unwrap(Session.class);
 		String query = "from Book where title like '%"+title+"%'";
-		return session.createQuery(query,Book.class).getResultList();
+		return session.createQuery(query,Kitap.class).getResultList();
 	}
 	@Override
 	@Transactional
-	public Book getById(int bookNo) {
+	public List<Author> getAuthors() {
 		Session session = entityManager.unwrap(Session.class);
-		return session.get(Book.class, bookNo);
-	}
+		String query = "from Author";
+		return session.createQuery(query,Author.class).getResultList();
+	}	
 	@Override
 	@Transactional
 	public int findMaxId() {
 		Session session = entityManager.unwrap(Session.class);
-		Book book = session.createQuery("select max(b.id) from Book b",Book.class).getSingleResult();
-		return book.getBookNo();
+		return session.createQuery("select MAX(id) from Book",Book.class).getSingleResult().getBookNo();
 	}
 }
