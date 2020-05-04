@@ -2,15 +2,16 @@ package finalProject.DAO;
 
 import java.util.List;
 
-import finalProject.business.model.Kitap;
-import finalProject.entities.Author;
+import finalProject.DAO.entity.*;
 
 public interface IBookDAO {
-	List<Kitap> getKitaplar();
-	void add(Kitap kitap);
-	void update(Kitap kitap);
-	Kitap getById(int id);
-	List<Kitap> getByTitle(String title);
-	public List<Author> getAuthors();
-	int findMaxId();
+	List<Book> getBooks();
+	List<Book> getBooksByTitle(String title);
+	Book getBookById(int id);
+	
+	void add(Book book);
+	void update(Book book);
+	
+	List<Author> getAuthors();
+	Author getAuthorById(int id);
 }

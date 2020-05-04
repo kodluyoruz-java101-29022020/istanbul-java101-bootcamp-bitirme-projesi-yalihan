@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
-	<div th:switch="${kitaplar}" class="container my-2">
+	<div th:switch="${books}" class="container my-2">
 		<h2 th:case=null class="container my-5">Arşivde Kitap Yok</h2>
 		<div th:case=*>
 			<h1>Kitap Listem</h1>
@@ -29,14 +29,14 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="kitap : ${kitaplar}">
-						<td th:text="${kitap.book.title}"></td>
+					<tr th:each="book : ${books}">
+						<td th:text="${book.title}"></td>
                         <td>
-							<option th:each="author : ${kitap.book.authors}" th:value="${author.authorName}" th:text="${author.authorName}">Yazarlar</option>
+							<option th:each="author : ${book.authors}" th:value="${author.authorNo}" th:text="${author.authorName}"/>
 						</td>
-						<td th:text="${kitap.book.description}"></td>
-						<td th:text="${kitap.book.pubYear}"></td>
-						<td><a th:href="@{/thyme/edit/{bookNo}(bookNo=${kitap.book.bookNo})}" class="btn btn-primary">Düzenle</a></td>
+						<td th:text="${book.description}"></td>
+						<td th:text="${book.pubYear}"></td>
+						<td><a th:href="@{/thyme/edit/{bookNo}(bookNo=${book.bookNo})}" class="btn btn-primary">Düzenle</a></td>
 					</tr>
 				</tbody>
 			</table>

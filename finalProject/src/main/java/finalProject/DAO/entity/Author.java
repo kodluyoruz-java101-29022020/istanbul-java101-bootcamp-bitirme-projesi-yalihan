@@ -1,4 +1,4 @@
-package finalProject.entities;
+package finalProject.DAO.entity;
 
 import java.util.List;
 
@@ -17,6 +17,7 @@ public class Author {
 	
 	@Id
 	@Column(name="author_no")
+//	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int authorNo;
 	@Column(name="author_name")
 	private String authorName;
@@ -25,6 +26,15 @@ public class Author {
 	@ManyToMany(mappedBy = "authors", fetch = FetchType.LAZY)
 	private List<Book> books;
 	
+	public Author() {
+		
+	}
+	
+	public Author(int authorNo, String authorName, List<Book> books) {
+		this.authorNo = authorNo;
+		this.authorName = authorName;
+		this.books = books;
+	}
 	
 	public int getAuthorNo() {
 		return authorNo;

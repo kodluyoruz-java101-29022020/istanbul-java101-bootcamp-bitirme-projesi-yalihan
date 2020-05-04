@@ -1,5 +1,4 @@
-package finalProject.entities;
-
+package finalProject.DAO.entity;
 
 import java.util.Date;
 import java.util.List;
@@ -12,7 +11,7 @@ public class Book {
 	
 	@Id
 	@Column(name="book_no")
-	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int bookNo;
 	@Column(name="title")
 	private String title;
@@ -30,18 +29,18 @@ public class Book {
 				)
 	private List<Author> authors;
 	
-	public Book() {
-		
-	}
-
-	public Book(int bookNo , String title , Date pubYear , String description , List<Author> authors) {
+	
+	public Book(int bookNo , String title , Date pubYear , String description) {
 		this.bookNo = bookNo;
 		this.title = title;
 		this.pubYear = pubYear;
 		this.description = description;
-		this.authors = authors;
 	}
-
+	
+	public Book() {
+		
+	}
+	
 	public int getBookNo() {
 		return bookNo;
 	}
@@ -73,5 +72,16 @@ public class Book {
 	}
 	public void setAuthors(List<Author> authors) {
 		this.authors = authors;
+	}
+	
+	
+	
+	public boolean hasAuthor(Author author) {
+		for (Author bookAuthors: getAuthors()) {
+			if (bookAuthors.getAuthorNo() == author.getAuthorNo()) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
