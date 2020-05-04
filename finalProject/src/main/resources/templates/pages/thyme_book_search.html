@@ -16,14 +16,17 @@
 					<thead>
 						<tr>
 							<th>Title</th>
-	<!-- 						<th>Authors</th> -->
+							<th>Authors</th>
 							<th>Düzenle</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="book : ${books}">
 							<td th:text="${book.title}"></td>
-	<!-- 						<td th:text="${book.author}"></td> -->
+                        	<td>
+								<option th:each="author : ${book.authors}" th:value="${author.authorNo}" th:text="${author.authorName}"/>
+							</td>
+
 							<td><a th:href="@{/thyme/edit/{bookNo}(bookNo=${book.bookNo})}" class="btn btn-primary">Düzenle</a></td>
 						</tr>
 					</tbody>
