@@ -38,7 +38,7 @@ public class PageController {
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	@RequestMapping(value="/book/add",method=RequestMethod.GET)
-	public String getAddPage(Book book,Model model) {
+	public String getAddPage(Model model,Book book) {
 		model.addAttribute("authors",iBookService.getAuthors());
 		return "pages/thyme_book_add";
 	}
