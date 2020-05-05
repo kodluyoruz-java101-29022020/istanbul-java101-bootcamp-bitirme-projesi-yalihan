@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import finalProject.DAO.IBookDAO;
 import finalProject.DAO.entity.*;
+import finalProject.annotation.MethodRunningTime;
 import finalProject.business.IBookService;
 
 @Service
@@ -21,29 +22,34 @@ public class BookManager implements IBookService {
 	}
 	@Override
 	@Transactional
+	@MethodRunningTime(active=true)
 	public List<Book> getBooks() {
 		return this.iBookDAO.getBooks();
 	}
 	
 	@Override
 	@Transactional
+	@MethodRunningTime(active=true)
 	public List<Book> getBooksByTitle(String title) {
 		return this.iBookDAO.getBooksByTitle(title);
 	}
 	
 	@Override
 	@Transactional
+	@MethodRunningTime(active=true)
 	public Book getBookById(int bookNo) {
 		return this.iBookDAO.getBookById(bookNo);
 	}
 	
 	@Override
 	@Transactional
+	@MethodRunningTime(active=true)
 	public void add(Book book) {
 		this.iBookDAO.add(book);
 	}
 	@Override
 	@Transactional
+	@MethodRunningTime(active=true)
 	public void update(Book book) {
 		this.iBookDAO.update(book);
 	}
@@ -52,12 +58,14 @@ public class BookManager implements IBookService {
 	
 	@Override
 	@Transactional
+	@MethodRunningTime(active=true)
 	public List<Author> getAuthors() {
 		return this.iBookDAO.getAuthors();
 	}	
 	
 	@Override
 	@Transactional
+	@MethodRunningTime(active=true)
 	public Author getAuthorById(int authorNo) {
 		return this.iBookDAO.getAuthorById(authorNo);
 		
